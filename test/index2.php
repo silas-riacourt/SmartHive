@@ -1,5 +1,7 @@
 <?php
 //index.php
+$date = date("Y-m-d");
+echo $date;
 $connect = mysqli_connect("localhost", "root", "", "test2");
 $query = '
 SELECT data_temperature, 
