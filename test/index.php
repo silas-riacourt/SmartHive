@@ -100,8 +100,8 @@ if (isset($_GET['date']))
   <div class="page-wrapper">
    <br />
    <h2 align="center"><?php echo $_GET['date'];?></h2>
-   <p>Date: <input type="text" id="datepicker"></p>
    <div id="line_chart" style="width: 100%; height: 500px"></div>
+    <p>Choisir une date: <input type="text" id="datepicker"></p>
   </div>
  </body>
 </html>
