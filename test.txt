@@ -1,1 +1,14 @@
-initialisation
+FAIT :
+
+Système authentification :
+
+Inscription avec token de validation (avec expiration)
+Connection avec user ou email
+Système de sauvgarde mot de passe (sécurisé)
+Système d'oublie de mot passe
+Changement de mot de passe possible une fois connecté
+
+Gestion sécurisé des pages
+
+Page des graphiques
+Page des tableaux
