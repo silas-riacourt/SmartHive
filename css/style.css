@@ -1,12 +1,3 @@
-/*!
- * Project_Name: Weather
- * Author: Themezy
- * Email: contact[at]themezy.com
- * Url: http://www.themezy.com
- */
-/*=========================================== 
- * Importing CSS Libraries
- *===========================================*/
 article,
 aside,
 details,
@@ -1510,7 +1501,10 @@ form textarea {
     font-size: 24px;
     font-size: 1.7142857143rem;
     color: #009ad8; }
-
+.navbar-inverse {
+    background-color: #ebbc14;
+    border-color: #ebbc14;
+}
 .photo {
   position: relative;
   padding-left: 50%;

@@ -14,23 +14,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
     <title>SmartHive</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+      <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
+            <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
+            <link rel="stylesheet" href="css/test.css" type="text/css" /> 
+            
   </head>
 
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+
+      <div class="container-fluid">
+
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">SmartHive</a>
+<ul class="nav navbar-nav">
+<li><a class="navbar-brand" href="#menu-toggle">SmartHive</a></li>
+<li>
+<a href="#menu-toggle" id="menu-toggle">
+<span class="custom-icon-bar"></span>
+<span class="custom-icon-bar"></span>
+<span class="custom-icon-bar"></span>
+</a>
+</li>
+</ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -61,9 +68,60 @@
         </div>
       </div>
     </nav>
+<br></br>
+</div>
+    <div class="container-fluid">
+<div id="wrapper" class="">
 
-    <div class="container">
+<div id="sidebar-wrapper">
+<ul class="sidebar-nav">
+<br></br>
+<li class="sidebar-brand">
+<a id="menu-toggle" href="#menu-toggle">
+Menu
+</a>
+</li>
+<li class="nav-divider"></li>
+<li>
+<label label-default="" class="tree-toggler nav-header">Statistiques </label>
+<ul class="nav  tree active-trial">
+<li>
+<a href="table.php"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Tableaux</span></a>
+</li>
+<li>
+<a href="index.php"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Graphique</span></a>
+</li>
+</ul>
+</li>
+<li class="nav-divider"></li>
+<li>
+<label label-default="" class="tree-toggler nav-header">Capteurs </label>
+<ul class="nav  tree active-trial">
+<li>
+<a href="/sensors/1"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Température</span></a>
+</li>
+<li>
+<a href="/sensors/3"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Nombre d&#39;abeilles</span></a>
+</li>
+<li>
+<a href="/sensors/2"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Humidité</span></a>
+</li>
+</ul>
+</li>
+<li class="nav-divider"></li>
+</ul>
+</div>
     <br></br><br></br>
+    <script src="css/bootstrap/js/jquery.js"></script>
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
 
     <?php if(isset($_SESSION['flash'])): ?>
       <?php foreach($_SESSION['flash'] as $type => $message):?>
