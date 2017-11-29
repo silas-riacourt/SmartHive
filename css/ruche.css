@@ -14,6 +14,38 @@
     border-color: #267e92;
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #999999;
+    background-color: #999999;
+}
+.sidebar-nav .sidebar-icon {
+    width: 25px;
+    margin-right: 10px;
+}
+img {
+    vertical-align: middle;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #999999;
+}
+.sidebar-nav li a:hover {
+    text-decoration: none;
     color: #fff;
-    background-color: #ebbc14;
+    background: rgba(255,255,255,0.2);
+}
+footer{
+   background-color: #ebbc14;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    text-align: center;
+    color: #000000;
+}
+
+footer p {
+    padding: 10.5px;
+    margin: 0px;
+    line-height: 100%;
 }
