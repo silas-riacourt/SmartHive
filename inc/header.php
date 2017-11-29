@@ -15,6 +15,12 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <title>SmartHive</title>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+      <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
+            <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
+      <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+      <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
       <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
             <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
             <link rel="stylesheet" href="css/test.css" type="text/css" /> 
@@ -29,7 +35,7 @@
 
         <div class="navbar-header">
 <ul class="nav navbar-nav">
-<li><a class="navbar-brand" href="#menu-toggle">SmartHive</a></li>
+          <li><a class="navbar-brand" href="index.php" style="padding:0 0 0 15px;"><img alt="" src="images/bee2.png" width="50px" /></a></li>
 <li>
 <a href="#menu-toggle" id="menu-toggle">
 <span class="custom-icon-bar"></span>
@@ -38,13 +44,13 @@
 </a>
 </li>
 </ul>
+<a class="navbar-brand" href="#">SmartHive</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="login.php">Accueil</a></li>
-            <li><a href="table.php">Tableaux</a></li>
-            <li><a href="index.php">Graphique</a></li>
-                <li class="dropdown">
+            <!-- <li><a href="table.php">Tableaux</a></li> -->
+            <!-- <li><a href="index.php">Graphique</a></li> -->
+               <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <sp    class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="#">1</a></li>
@@ -55,7 +61,7 @@
                       <li><a href="#">1</a></li>
                       <li><a href="#">2</a></li>
                     </ul>
-                </li>
+                </li>-->
           </ul>
             <ul class="nav navbar-nav navbar-right">
             <?php if(isset($_SESSION['auth'])): ?>
@@ -86,10 +92,10 @@ Menu
 <label label-default="" class="tree-toggler nav-header">Statistiques </label>
 <ul class="nav  tree active-trial">
 <li>
-<a href="table.php"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Tableaux</span></a>
+<a href="table.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Tableaux</span></a>
 </li>
 <li>
-<a href="index.php"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Graphique</span></a>
+<a href="index.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Graphique</span></a>
 </li>
 </ul>
 </li>
@@ -98,13 +104,13 @@ Menu
 <label label-default="" class="tree-toggler nav-header">Capteurs </label>
 <ul class="nav  tree active-trial">
 <li>
-<a href="/sensors/1"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Température</span></a>
+<a href="/sensors/1"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Température</span></a>
 </li>
 <li>
-<a href="/sensors/3"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Nombre d&#39;abeilles</span></a>
+<a href="/sensors/3"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Nombre d&#39;abeilles</span></a>
 </li>
 <li>
-<a href="/sensors/2"><span><img alt="* " class="sidebar-icon" src="/assets/bee-d0e8c46564f519c86940d0a957ef58b2.png" /> Humidité</span></a>
+<a href="/sensors/2"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
 </li>
 </ul>
 </li>
