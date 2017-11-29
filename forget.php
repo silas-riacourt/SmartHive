@@ -1,3 +1,6 @@
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 <?php
 if(!empty($_POST) && !empty($_POST['email'])){
     require_once 'inc/db.php';

@@ -1,3 +1,6 @@
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 <?php
 require_once 'inc/functions.php';
 reconnect_from_cookie();

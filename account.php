@@ -1,3 +1,6 @@
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 <?php 
 	require 'inc/functions.php';
 	logged_only();

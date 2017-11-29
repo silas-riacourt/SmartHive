@@ -1,5 +1,7 @@
  <?php
-
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 	require 'inc/functions.php';
 	logged_only();
 	if(!empty($_POST)){
@@ -27,54 +29,14 @@ catch(Exception $e)
       $result->execute();
  ?>  
 <!DOCTYPE html>  
-	<html>  
-		<head>  
-			<title>Tableaux</title>  
+<?php require 'inc/header.php'; ?>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
       <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
             <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
 			<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
 			<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
 			<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
-           
-		</head>  
-	<body> 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-   		<div class="container">
-     		<div class="navbar-header">
-       		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-         		<span class="sr-only">Toggle navigation</span>
-         		<span class="icon-bar"></span>
-         		<span class="icon-bar"></span>
-         		<span class="icon-bar"></span>
-       		</button>
-       		<a class="navbar-brand" href="#">SmartHive</a>
-     		</div>
-     		<div id="navbar" class="navbar-collapse collapse">
-       		<ul class="nav navbar-nav">
-         		<li><a href="#">Accueil</a></li>
-         		<li class="active"><a href="#">Tableaux</a></li>
-         		<li><a href="index.php">Graphique</a></li>
-            		<li class="dropdown">
-                		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <sp    class="caret"></span></a>
-                		<ul class="dropdown-menu">
-                  		<li><a href="#">1</a></li>
-                  		<li><a href="#">2</a></li>
-                  		<li><a href="#">3</a></li>
-                  		<li role="separator" class="divider"></li>
-                  		<li class="dropdown-header">Test</li>
-                  		<li><a href="#">1</a></li>
-                  		<li><a href="#">2</a></li>
-                		</ul>
-            		</li>
-       		</ul>
-       			<ul class="nav navbar-nav navbar-right">
-       			    <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['auth']->username; ?></a></li>
-					<li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Se déonnecter</a></li>
-       			</ul>
-     		</div>
-   		</div>
- 		</nav>
+  
            <div class="container">  
                 <h3 align="center">Tableau temperature</h3>  
                 <br></br>
@@ -102,8 +64,8 @@ catch(Exception $e)
                      </table>  
                 </div>  
            </div>  
-      </body>  
- </html>  
+           
+ <?php require 'inc/footer.php'; ?>
  <script>  
  $(document).ready(function() {
     $('#temperature_data').DataTable( {

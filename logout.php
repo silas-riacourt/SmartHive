@@ -1,3 +1,6 @@
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 <?php
 session_start();
 setcookie('remember', NULL, -1);

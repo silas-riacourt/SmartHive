@@ -1,3 +1,6 @@
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
 <?php
 	$user_id = $_GET['id'];
 
