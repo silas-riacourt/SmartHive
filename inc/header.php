@@ -104,13 +104,13 @@ Menu
 <label label-default="" class="tree-toggler nav-header">Capteurs </label>
 <ul class="nav  tree active-trial">
 <li>
-<a href="/sensors/1"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Température</span></a>
+<a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Température</span></a>
 </li>
 <li>
-<a href="/sensors/3"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Nombre d&#39;abeilles</span></a>
+<a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Nombre d&#39;abeilles</span></a>
 </li>
 <li>
-<a href="/sensors/2"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
+<a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
 </li>
 </ul>
 </li>
