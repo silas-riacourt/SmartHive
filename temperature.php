@@ -1,93 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Mes Temperatures</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
- 
-</head>
- 
-<body>
- 
 
- 
-<div id="graphique0"></div>
- 
-<script type="text/javascript">
-//**ceci est du code Highcharts.com*************************************************************************
-//** vous pouvez trouver toutes les decriptions des options sur le site officiel****************************
-// temperature 
-$(function() {
-    chart1 = new Highcharts.Chart({
-        chart: {
-            renderTo: 'graphique0',
-            type: 'spline',
-            zoomType: 'x',
-            backgroundColor: null,
-        },
-        title: {
-            text: 'Temperatures',
-            style:{
-                color: '#4572A7',
-            },
-        },
-        legend: {
-            enabled: true,
-            backgroundColor: 'white',
-            borderRadius: 14,
-        },
-        xAxis: {
-            type: 'datetime',
-            dateTimeLabelFormats: { 
-                month: '%e. %b',
-                year: '%b',
-            }
-         },
-        yAxis: [{ 
-            labels: {
-                format: '{value} °C',
-                style: {
-                    color: '#C03000',
-                },
-            },
-            title: {
-                text: '',
-                style: {
-                    color: '#C03000',
-                },
-            }
-        }],
-        tooltip: {
-            shared: true,
-            crosshairs: true,
-            borderRadius: 6,
-            borderWidth: 3,
-            xDateFormat: '%A %e %b  %H:%M:%S',
-            valueSuffix: ' °C',
-         },
-        plotOptions: {
-            spline: {
-                marker: {
-                    enabled: false, 
-                },
-            },
-        },
- 
-        series: [{
-            name: 'sonde1',
-            color: 'red',
-            zIndex: 1,
-            data: [<?php echo $liste1; ?>] // c'est ici qu'on insert les data
-        }, {
-            name: 'sonde2',
-            color: 'blue',
-            zIndex: 2,
-            data: [<?php echo $liste2; ?>] // c'est ici qu'on insert les data
-        }]
-    });
-});
-</script>
- 
-</body>
-</html>
+<?php
+/* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*/ 
+	require 'inc/functions.php';
+	logged_only();
+	if(!empty($_POST)){
+
+    if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
+        $_SESSION['flash']['danger'] = "Les mots de passes ne correspondent pas";
+    }else{
+        $user_id = $_SESSION['auth']->id;
+        $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
+        require_once 'inc/db.php';
+        $pdo->prepare('UPDATE users SET password = ? WHERE id = ?')->execute([$password,$user_id]);
+        $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour";
+    }
+
+}
+ try
+{
+  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '');
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
+}
+      $result = $bdd->prepare('SELECT * FROM test ORDER BY data_id DESC LIMIT 1');
+      $result->execute();
+                          while($row = $result->fetch()) 
+                          {  
+
+                                    $data_id = $row["data_id"];
+                                    $data_date = $row["data_date"];
+                                    $data_heure = $row["data_heure"];
+                                    $data_temperature = $row["data_temperature"];
+
+         
+
+                          }  
+require 'inc/header.php';
+
+?>
+        <div class="container">
+            <div class="container-fluid">
+           			 <?php $date = date_parse($data_date);?>	
+            		<h1>Dernière témpérature : <?php echo $data_temperature;?>°C enregistrer à <?php echo $data_heure;?> Le <?php echo $date['day'];?>-<?php echo $date['month']?>-<?php echo $date['year']?></h1>
+            </div>
+
+
+
+        </div>
+<?php require 'inc/footer.php';?>
