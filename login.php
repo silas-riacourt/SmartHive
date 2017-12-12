@@ -1,9 +1,12 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php
+/*
+* 
+    Author : Silas riacourt <silasdu22@gmail.com>
+*
+*/ 
 require_once 'inc/functions.php';
 reconnect_from_cookie();
+
 if (isset($_SESSION['auth'])) {
     header('Location: index.php');
     exit();

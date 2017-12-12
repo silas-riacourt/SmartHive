@@ -1,6 +1,8 @@
 <?php
-/* 
+/*
+* 
     Author : Silas riacourt <silasdu22@gmail.com>
+*
 */ 
   require 'inc/functions.php';
   logged_only();
@@ -13,7 +15,7 @@
         $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
         require_once 'inc/db.php';
         $pdo->prepare('UPDATE users SET password = ? WHERE id = ?')->execute([$password,$user_id]);
-        $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour";
+        $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour!";
     }
 
 }
