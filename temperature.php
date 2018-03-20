@@ -11,20 +11,25 @@
         $_SESSION['flash']['danger'] = "Les mots de passes ne correspondent pas";
     }else{
         $user_id = $_SESSION['auth']->id;
+
         $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
         require_once 'inc/db.php';
         $pdo->prepare('UPDATE users SET password = ? WHERE id = ?')->execute([$password,$user_id]);
+
+
         $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour";
+
     }
 
 }
  try
 {
-  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '');
+  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '')
 }
 catch(Exception $e)
 {
         die('Erreur : '.$e->getMessage());
+
 }
       $result = $bdd->prepare('SELECT * FROM test ORDER BY data_id DESC LIMIT 1');
       $result->execute();
@@ -40,15 +45,16 @@ catch(Exception $e)
 
                           }  
 require 'inc/header.php';
-
 ?>
         <div class="container">
             <div class="container-fluid">
            			 <?php $date = date_parse($data_date);?>	
-            		<h1>Dernière témpérature : <?php echo $data_temperature;?>°C enregistrer à <?php echo $data_heure;?> Le <?php echo $date['day'];?>-<?php echo $date['month']?>-<?php echo $date['year']?></h1>
+            		<h1>Dernière témpérature : <?php echo $data_temperature;?>°C enregistrer à <?php echo $data_heure;?> Le <?php echo $date['day'];?>-<?php echo $date['month']?>-<?php echo $date['year']?>
+            			
+            		</h1>
             </div>
 
 
 
         </div>
-<?php require 'inc/footer.php';?>
+*-
