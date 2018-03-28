@@ -92,10 +92,13 @@ Menu
 <label label-default="" class="tree-toggler nav-header">Statistiques </label>
 <ul class="nav  tree active-trial">
 <li>
-<a href="table.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Tableaux</span></a>
+<a href="stats_temperature.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Température</span></a>
 </li>
 <li>
-<a href="index.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Graphique</span></a>
+<a href="stats_humidite.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
+</li>
+<li>
+<a href="stats_masse.php"><span><img alt="" class="sidebar-icon" src="images/final.png" /> Masse</span></a>
 </li>
 </ul>
 </li>
@@ -107,10 +110,13 @@ Menu
 <a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Température</span></a>
 </li>
 <li>
-<a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Nombre d&#39;abeilles</span></a>
+<a href="masse.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Poids</span></a>
 </li>
 <li>
-<a href="temperature.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
+<a href="humidite.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> Humidité</span></a>
+</li>
+<li>
+<a href="gps.php"><span><img alt="* " class="sidebar-icon" src="images/final.png" /> GPS</span></a>
 </li>
 </ul>
 </li>
