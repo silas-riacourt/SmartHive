@@ -88,3 +88,7 @@ footer p {
 .huge {
     font-size: 40px;
 }
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
