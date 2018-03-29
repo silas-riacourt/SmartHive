@@ -104,24 +104,38 @@ if (isset($_GET['date']))
     <script src="bootstrap-datepicker.js"></script> </head>
     <div class="page-wrapper">
     <h2 align="center"><?php echo $status;?></h2>
-    <form class="container" id="needs-validation" novalidate>
-      <p class="h3 font-weight-bold">Graphique temperature</p>
-      <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-          <div class="input-group">
-          <input type="text" class="form-control" name="date" id="example1" placeholder="Sélectionner une date">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">Rechercher</button>
-          </span>
+  <form class="container" id="needs-validation" novalidate>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="h4 font-weight-bold">Graphique temperature</p>
+            </div>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" name="date" id="example1" placeholder="Sélectionner une date">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit">Rechercher</button>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 </form>
-   <div id="line_chart" style="width: 100%; height: 480px"></div>
-
-           <div class="container">  
-              <p class="h3 font-weight-bold">Tableau temperature</p>
-                <br></br>
+<div class="container">
+  <div id="line_chart" style="width: 100%; height: 480px"></div></div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container"> 
+            <p class="h3 font-weight-bold">Tableau temperature</p>
+        </div>
+      </div>
+    </div>
+          <div class="container">
                 <div class="table-responsive">  
                      <table id="temperature_data" class="table table-striped table-bordered">  
                           <thead>  
@@ -145,6 +159,9 @@ if (isset($_GET['date']))
                           ?>  
                      </table>  
                 </div>
+              </div>
+            </div>
+          </div>
            </div><br></br><br>
 <?php 
 if(isset($_POST['date']))
@@ -157,7 +174,7 @@ else{
 }
 ?>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
    google.charts.load('current', {'packages':['corechart']});
    google.charts.setOnLoadCallback(drawChart);
