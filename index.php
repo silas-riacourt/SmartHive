@@ -29,30 +29,24 @@ catch(Exception $e)
     die('Erreur : '.$e->getMessage());
 }
 ?>
-</style>
-    <style>
+<style>
   .page-wrapper
   {
    width:1000px;
    margin:0 auto;
   }
-  </style> 
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <script src="inc/function.js"></script>
-    <title>mysql+maps</title>
-    <style>
-      #map {
-        height: 100%;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+  #map {
+    height: 100%;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
 <?php require 'inc/header.php'; ?>
+<script src="inc/function.js"></script>
+</head>
     <h2 align="center">Où se trouve votre ruche n°286235 ?</h2>
   <body>
       <h3 id="dev"></h3>
