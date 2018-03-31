@@ -62,7 +62,7 @@ if (isset($_GET['date']))
            'type' => 'datetime'
           ),
           array(
-          'label' => 'Temperature (°C)', 
+          'label' => 'Humidité (%)', 
           'type' => 'number'
           )
       );
@@ -166,6 +166,9 @@ else{
     var data = new google.visualization.DataTable(<?php echo $jsonTable; ?>);
 
     var options = {
+          hAxis: {
+        format: 'HH:mm'
+    },
      legend:{position:'bottom'},
      chartArea:{width:'95%', height:'65%'},
      colors: ['#ebbc14']

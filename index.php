@@ -32,7 +32,6 @@ if(isset($_POST['alert_id'])){
                                     $temperature_data_heure = $row["data_heure"];
                                     $temperature_data_temperature = $row["data_temperature"];
 
-         
 
                           }
       $date_temperature = date_parse($temperature_data_date);
@@ -113,7 +112,6 @@ if(isset($_POST['alert_id'])){
         ';
       }
 ?>
-
   <div class="row">
     <div class="col-md-4">
       <div class="dash-box dash-box-color-1">

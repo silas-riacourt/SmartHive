@@ -23,14 +23,14 @@
 	}
 try
 {
-  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '');
+  $bdd = new PDO('mysql:host=localhost;dbname=ruche;charset=utf8', 'root', '');
 }
 catch(Exception $e)
 {
         die('Erreur : '.$e->getMessage());
 
 }
-      $result = $bdd->prepare('SELECT * FROM test ORDER BY data_id DESC LIMIT 1');
+      $result = $bdd->prepare('SELECT * FROM temperature ORDER BY data_id DESC LIMIT 1');
       $result->execute();
                           while($row = $result->fetch()) 
                           {  
