@@ -29,99 +29,87 @@ catch(Exception $e)
     die('Erreur : '.$e->getMessage());
 }
 ?>
-</style>
-    <style>
+<style>
   .page-wrapper
   {
    width:1000px;
    margin:0 auto;
   }
-  </style>
-  <link rel="stylesheet" href="css/dashboard.css" type="text/css" /> 
-  <?php require 'inc/header.php'; ?>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
-  <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-    <script src="bootstrap-datepicker.js"></script> </head>
-    <div class="page-wrapper">
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="container"> 
-            <center><p class="h3 font-weight-bold">Tableau de bord</p></center>
-        </div>
-      </div>
-    </div>
+  #map {
+    height: 100%;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<?php require 'inc/header.php'; ?>
+<script src="inc/function.js"></script>
+</head>
+    <h2 align="center">Où se trouve votre ruche n°286235 ?</h2>
+  <body>
+      <h3 id="dev"></h3>
+    <div id="map"></div>
+  
+    <script>
+      var customLabel = {
+        1: {
+          label: '1'
+        },
+        2: {
+          label: '2'
+        }
+      };
 
-<div class="container">
-<?php
-    $alert_r = 1;
-    if($alert_r == 1){
-      $alert_message = "Les mots de passes ne correspondent pas";
-      echo '
-<div class="alert alert-info">
-  <strong>Info!</strong> Vous avez (1) nouvelle alerte.
-</div>
-<div class="alert alert-danger">
-  <strong>ALERTE!</strong> La ruche à été déplacer le 29/03/2018 à 19h23 !
-</div>
-      ';
-    }else{
-      echo '
-<div class="alert alert-info">
-  <strong>Info!</strong> Vous navez aucune noubelle alerte.
-</div>
-      ';
-    }
-?>
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(48.1843903, -2.762291),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+          downloadUrl('http://localhost/SmartHive/inc/convert.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var date = markerElem.getAttribute('date');
+              var capteur = markerElem.getAttribute('capteur_id');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+        //création boite qui contient les infos sur le point
+        //div & test
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = "RUCHE n°286235"
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+              var text = document.createElement('text');
+              text.textContent = date
+              infowincontent.appendChild(text);
+              var icon = customLabel[capteur] || {};
+              //Affichage des markers
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+                                document.getElementById("dev").innerHTML = point;
+              //évenement pour détection le click sur le marker et afficher les infos sur celui-ci
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+      doNothing();
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANFCjBuEsUO1o49ZVkXdukdZ2OLUfnajg&callback=initMap">
+    </script>
+  </body>
+</html>
 
-  <div class="row">
-    <div class="col-md-4">
-      <div class="dash-box dash-box-color-1">
-        <div class="dash-box-icon">
-          <i class="glyphicon glyphicon-cloud"></i>
-        </div>
-        <div class="dash-box-body">
-          <span class="dash-box-count">17°C</span>
-          <span class="dash-box-title">Température</span>
-        </div>
-        
-        <div class="dash-box-action">
-          <a href="temperature.php" class="button">Détails</a>
-        </div>        
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="dash-box dash-box-color-2">
-        <div class="dash-box-icon">
-          <i class="glyphicon glyphicon-oil"></i>
-        </div>
-        <div class="dash-box-body">
-          <span class="dash-box-count">--,-- Kg</span>
-          <span class="dash-box-title">Masse</span>
-        </div>
-        
-        <div class="dash-box-action">
-          <a href="humidite.php" class="button">Détails</a>
-        </div>        
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="dash-box dash-box-color-3">
-        <div class="dash-box-icon">
-          <i class="glyphicon glyphicon-tint"></i>
-        </div>
-        <div class="dash-box-body">
-          <span class="dash-box-count">75%</span>
-          <span class="dash-box-title">Humidité</span>
-        </div>
-        
-        <div class="dash-box-action">
-          <a href="temperature.php" class="button">Détails</a>
-        </div>        
-      </div>
-    </div>
-  </div>
-</div>
  <?php require 'inc/footer.php'; ?>

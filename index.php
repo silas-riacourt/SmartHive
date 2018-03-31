@@ -6,110 +6,160 @@
 */ 
   require 'inc/functions.php';
   logged_only();
-  if(!empty($_POST)){
-
-    if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
-      $_SESSION['flash']['danger'] = "Les mots de passes ne correspondent pas";
-    }else{
-      $user_id = $_SESSION['auth']->id;
-      $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
-      require_once 'inc/db.php';
-      $pdo->prepare('UPDATE users SET password = ? WHERE id = ?')->execute([$password,$user_id]);
-      $_SESSION['flash']['success'] = "Votre mot de passe a bien été mis à jour!";
-    }
-
-}
 date_default_timezone_set('Europe/Paris');
 try
 {
-  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '');
+  $bdd = new PDO('mysql:host=localhost;dbname=ruche;charset=utf8', 'root', '');
+  $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 }
 catch(Exception $e)
 {
-    die('Erreur : '.$e->getMessage());
+        die('Erreur : '.$e->getMessage());
+
 }
+if(isset($_POST['alert_id'])){
+    $update = $bdd->prepare('UPDATE alert SET alert_status=1 WHERE alert_id = :id');
+    $update->bindValue('id',$_POST['alert_id']);
+    $update->execute();
+}
+      $req = $bdd->prepare('SELECT * FROM temperature ORDER BY data_id DESC LIMIT 1');
+      $req->execute();
+                          while($row = $req->fetch()) 
+                          {  
+
+                                    $temperature_data_id = $row["data_id"];
+                                    $temperature_data_date = $row["data_date"];
+                                    $temperature_data_heure = $row["data_heure"];
+                                    $temperature_data_temperature = $row["data_temperature"];
+
+         
+
+                          }
+      $date_temperature = date_parse($temperature_data_date);
+      $req = $bdd->prepare('SELECT * FROM humidity ORDER BY data_id DESC LIMIT 1');
+      $req->execute();
+                          while($row = $req->fetch()) 
+                          {  
+
+                                    $humidity_data_id = $row["data_id"];
+                                    $humidity_data_date = $row["data_date"];
+                                    $humidity_data_heure = $row["data_heure"];
+                                    $humidity_data_humidity = $row["data_humidity"];
+
+         
+
+                          }
+    $date_humidity = date_parse($humidity_data_date);
+      $req = $bdd->prepare('SELECT * FROM alert WHERE alert_status != 1  ORDER BY alert_id ');
+      $req->execute();
+                          while($row = $req->fetch()) 
+                          {  
+                                    $alert_text= $row["alert_text"];
+                                    $alert_date = $row["alert_date"];
+                                    $alert_heure = $row["alert_heure"];
+                                    $alert_id = $row["alert_id"];
+
+                          }
+      $req->execute();
+      $num_rows = $req->fetchColumn(); 
+      $req->execute();
 ?>
-<style>
+</style>
+    <style>
   .page-wrapper
   {
    width:1000px;
    margin:0 auto;
   }
-  #map {
-    height: 100%;
-  }
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-</style>
-<?php require 'inc/header.php'; ?>
-<script src="inc/function.js"></script>
-</head>
-    <h2 align="center">Où se trouve votre ruche n°286235 ?</h2>
-  <body>
-      <h3 id="dev"></h3>
-    <div id="map"></div>
-  
-    <script>
-      var customLabel = {
-        1: {
-          label: '1'
-        },
-        2: {
-          label: '2'
-        }
-      };
+  </style>
+  <link rel="stylesheet" href="css/dashboard.css" type="text/css" /> 
+  <?php require 'inc/header.php'; ?>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
+  <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="bootstrap-datepicker.js"></script> </head>
+    <div class="page-wrapper">
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container"> 
+            <center><p class="h3 font-weight-bold">Tableau de bord</p></center>
+        </div>
+      </div>
+    </div>
 
-        function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(48.1843903, -2.762291),
-          zoom: 12
-        });
-        var infoWindow = new google.maps.InfoWindow;
-          downloadUrl('http://localhost/SmartHive/inc/convert.php', function(data) {
-            var xml = data.responseXML;
-            var markers = xml.documentElement.getElementsByTagName('marker');
-            Array.prototype.forEach.call(markers, function(markerElem) {
-              var date = markerElem.getAttribute('date');
-              var capteur = markerElem.getAttribute('capteur_id');
-              var point = new google.maps.LatLng(
-                  parseFloat(markerElem.getAttribute('lat')),
-                  parseFloat(markerElem.getAttribute('lng')));
-        //création boite qui contient les infos sur le point
-        //div & test
-              var infowincontent = document.createElement('div');
-              var strong = document.createElement('strong');
-              strong.textContent = "RUCHE n°286235"
-              infowincontent.appendChild(strong);
-              infowincontent.appendChild(document.createElement('br'));
-              var text = document.createElement('text');
-              text.textContent = date
-              infowincontent.appendChild(text);
-              var icon = customLabel[capteur] || {};
-              //Affichage des markers
-              var marker = new google.maps.Marker({
-                map: map,
-                position: point,
-                label: icon.label
-              });
-                                document.getElementById("dev").innerHTML = point;
-              //évenement pour détection le click sur le marker et afficher les infos sur celui-ci
-              marker.addListener('click', function() {
-                infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
-              });
-            });
-          });
-        }
-      doNothing();
-      
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANFCjBuEsUO1o49ZVkXdukdZ2OLUfnajg&callback=initMap">
-    </script>
-  </body>
-</html>
+<div class="container">
+<?php
+      if ($row = $req->fetch() == 0){//Alors aucune alerte
+        echo '
+          <div class="alert alert-info">
+            <strong>Info!</strong> Vous n\'avez aucune nouvelle alerte.
+          </div>
+        ';
+      }
+      else{
+        echo '
+          <div class="alert alert-info">
+            <strong>Info!</strong> Vous avez (' . $num_rows . ') nouvelle(s) alerte.
+          </div>
+          <form action="" method="post">
+            <div class="alert alert-danger">
+              <strong>ALERTE!</strong> ' . $alert_text . ' le ' . $alert_date . ' à ' . $alert_heure . ' !
+              <input type="hidden" name="alert_id" value="' . $alert_id . '"/>
+              <input type="submit" value="OK!"/>
+            </div>
+          </form>
+        ';
+      }
+?>
 
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dash-box dash-box-color-1">
+        <div class="dash-box-icon">
+          <i class="glyphicon glyphicon-cloud"></i>
+        </div>
+        <div class="dash-box-body">
+          <span class="dash-box-count"><?php echo $temperature_data_temperature;?>°C</span>
+          <span class="dash-box-title">Température (le <?php echo $date_temperature['day'];?>-<?php echo $date_temperature['month']?>-<?php echo $date_temperature['year']?> à <?php echo $temperature_data_heure;?>)</span>
+        </div>
+        
+        <div class="dash-box-action">
+          <a href="temperature.php" class="button">Détails</a>
+        </div>        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="dash-box dash-box-color-2">
+        <div class="dash-box-icon">
+          <i class="glyphicon glyphicon-oil"></i>
+        </div>
+        <div class="dash-box-body">
+          <span class="dash-box-count">--,-- Kg</span>
+          <span class="dash-box-title">Masse</span>
+        </div>
+        
+        <div class="dash-box-action">
+          <a href="humidite.php" class="button">Détails</a>
+        </div>        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="dash-box dash-box-color-3">
+        <div class="dash-box-icon">
+          <i class="glyphicon glyphicon-tint"></i>
+        </div>
+        <div class="dash-box-body">
+          <span class="dash-box-count"><?php echo $humidity_data_humidity;?>%</span>
+          <span class="dash-box-title">Humidité (le <?php echo $date_humidity['day'];?>-<?php echo $date_humidity['month']?>-<?php echo $date_humidity['year']?> à <?php echo $humidity_data_heure;?>)</span>
+        </div>
+        
+        <div class="dash-box-action">
+          <a href="temperature.php" class="button">Détails</a>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
  <?php require 'inc/footer.php'; ?>
