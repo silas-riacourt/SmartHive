@@ -51,16 +51,18 @@ if(isset($_POST['alert_id'])){
     $date_humidity = date_parse($humidity_data_date);
       $req = $bdd->prepare('SELECT * FROM alert WHERE alert_status != 1  ORDER BY alert_id ');
       $req->execute();
+      $count = 0;
                           while($row = $req->fetch()) 
                           {  
                                     $alert_text= $row["alert_text"];
                                     $alert_date = $row["alert_date"];
                                     $alert_heure = $row["alert_heure"];
                                     $alert_id = $row["alert_id"];
+                                    $alert_lat = $row["alert_latitude"];
+                                    $alert_lng = $row["alert_longitude"];
+                                    $count++;
 
                           }
-      $req->execute();
-      $num_rows = $req->fetchColumn(); 
       $req->execute();
 ?>
 </style>
@@ -87,26 +89,36 @@ if(isset($_POST['alert_id'])){
         </div>
       </div>
     </div>
+<script>
 
+
+var latlng = "<?php echo $alert_lat; ?>, <?php echo $alert_lng; ?>";
+var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+$.getJSON(url, function (data) {
+        var adress = data.results[0].formatted_address;
+        document.getElementById("dev").innerHTML = adress;
+});
+</script>
 <div class="container">
 <?php
+     //$a_adress = echo "<script> document.write(adress); </script>";
       if ($row = $req->fetch() == 0){//Alors aucune alerte
         echo '
           <div class="alert alert-info">
-            <strong>Info!</strong> Vous n\'avez aucune nouvelle alerte.
+            <i class="glyphicon glyphicon-info-sign"></i><strong>Info:</strong> Vous n\'avez aucune nouvelle alerte!
           </div>
         ';
       }
       else{
         echo '
           <div class="alert alert-info">
-            <strong>Info!</strong> Vous avez (' . $num_rows . ') nouvelle(s) alerte.
+            <i class="glyphicon glyphicon-info-sign"></i><strong> Info:</strong> Vous avez <strong>(' . $count . ')</strong> nouvelle(s) alerte<strong>!</strong>
           </div>
           <form action="" method="post">
             <div class="alert alert-danger">
-              <strong>ALERTE!</strong> ' . $alert_text . ' le ' . $alert_date . ' à ' . $alert_heure . ' !
+              <i class="glyphicon glyphicon-exclamation-sign"></i><strong> ALERTE:</strong> ' . $alert_text . ' a proximiter de <strong id="dev"></strong> le <strong>' . $alert_date . '</strong> à <strong>' . $alert_heure . ' !</strong>
               <input type="hidden" name="alert_id" value="' . $alert_id . '"/>
-              <input type="submit" value="OK!"/>
+              <button href="gps.php" type="submit" class="btn btn-danger">ok!</button>
             </div>
           </form>
         ';
@@ -160,4 +172,7 @@ if(isset($_POST['alert_id'])){
     </div>
   </div>
 </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANFCjBuEsUO1o49ZVkXdukdZ2OLUfnajg">
+    </script>
  <?php require 'inc/footer.php'; ?>
