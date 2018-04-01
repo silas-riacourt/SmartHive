@@ -1,7 +1,10 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 	$user_id = $_GET['id'];
 
 	$token = $_GET['token'];

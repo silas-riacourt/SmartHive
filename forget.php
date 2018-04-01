@@ -1,7 +1,10 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 if(!empty($_POST) && !empty($_POST['email'])){
     require_once 'inc/db.php';
     require_once 'inc/functions.php';

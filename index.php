@@ -1,9 +1,10 @@
 <?php
-/*
-* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*
-*/ 
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
   require 'inc/functions.php';
   logged_only();
 date_default_timezone_set('Europe/Paris');

@@ -1,4 +1,10 @@
 <?php
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 #BUT    : récupérer les données en BDD afin de les exporter au format XML
 #		: - connection à la BDD - récupération de la table entière (période sélectionable)
 #		: - utiliser la fonction DOM de php pour exporter les données en un fichier XML

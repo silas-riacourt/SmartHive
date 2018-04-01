@@ -1,7 +1,10 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 $host = "localhost";
 $dbname= "ruche";
 $pdo = new PDO("mysql:dbname=$dbname;host=$host", "root", "");

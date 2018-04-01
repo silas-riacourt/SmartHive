@@ -1,7 +1,10 @@
+<?php
+
 /* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
-<?php 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 	require 'inc/functions.php';
 	logged_only();
 	if(!empty($_POST)){

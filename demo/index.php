@@ -1,9 +1,10 @@
 <?php
-/*
-* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*
-*/ 
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 require_once '../inc/functions.php';
 
 

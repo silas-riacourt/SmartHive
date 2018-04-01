@@ -1,7 +1,10 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php
+
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
 if(isset($_GET['id']) && isset($_GET['token'])){
     require 'inc/db.php';
     require 'inc/functions.php';

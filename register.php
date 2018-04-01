@@ -1,11 +1,12 @@
-/* 
-    Author : Silas riacourt <silasdu22@gmail.com>
-*/ 
 <?php require 'inc/functions.php';
-require 'inc/header.php';
-?>
 
-<?php
+/* 
+ *             2017-2018
+ * Author : Silas riacourt <silasdu22@gmail.com>
+ * 
+ */
+require 'inc/header.php';
+
 
 if(!empty($_POST)){
 
