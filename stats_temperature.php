@@ -21,14 +21,7 @@
 
 }
 date_default_timezone_set('Europe/Paris');
-try
-{
-  $bdd = new PDO('mysql:host=localhost;dbname=ruche;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+require 'inc/db.php';
 $result = $bdd->prepare('SELECT * FROM temperature ORDER BY data_date ASC');
 $result->execute();
 if (isset($_GET['date']))

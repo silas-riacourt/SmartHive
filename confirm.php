@@ -8,14 +8,15 @@
 	$user_id = $_GET['id'];
 
 	$token = $_GET['token'];
-	require 'inc/db.php';
-	$req = $pdo->prepare('SELECT * FROM users WHERE id =?');
+        require_once 'inc/db.php';
+        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+	$req = $bdd->prepare('SELECT * FROM users WHERE id =?');
 	$req->execute([$user_id]);
 	$user = $req->fetch();
 	session_start();
 	if ($user && $user->confirmation_token == $token) {
 
-		$pdo->prepare('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?')->execute([$user_id]);
+		$bdd->prepare('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?')->execute([$user_id]);
 		$_SESSION['flash']['success'] = 'Votre compte a bien été valider';
 		$_SESSION['auth'] = $user;
 		header('Location: account.php');

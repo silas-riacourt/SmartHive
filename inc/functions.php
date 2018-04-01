@@ -36,13 +36,13 @@ function reconnect_from_cookie(){
     }
     if(isset($_COOKIE['remember']) && !isset($_SESSION['auth']) ){
         require_once 'db.php';
-        if(!isset($pdo)){
-            global $pdo;
+        if(!isset($bdd)){
+            global $bdd;
         }
         $remember_token = $_COOKIE['remember'];
         $parts = explode('==', $remember_token);
         $user_id = $parts[0];
-        $req = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+        $req = $bdd->prepare('SELECT * FROM users WHERE id = ?');
         $req->execute([$user_id]);
         $user = $req->fetch();
         if($user){

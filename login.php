@@ -14,7 +14,8 @@ if (isset($_SESSION['auth'])) {
 }
 if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     require_once 'inc/db.php';
-    $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL');
+    $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    $req = $bdd->prepare('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL');
     $req->execute(['username' => $_POST['username']]);
     $user = $req->fetch();
     if($user == null){
@@ -24,7 +25,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
         $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
         if($_POST['remember']){
    			$remember_token = str_random(250);
-    		$pdo->prepare('UPDATE users SET remember_token = ? WHERE id = ?')->execute([$remember_token, $user->id]);
+    		$bdd->prepare('UPDATE users SET remember_token = ? WHERE id = ?')->execute([$remember_token, $user->id]);
     		setcookie('remember', $user->id . '==' . $remember_token . sha1($user->id . 'ratonlaveurs'), time() + 60 * 60 * 24 * 7);
 		}
         header('Location: index.php');

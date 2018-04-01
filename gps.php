@@ -8,14 +8,7 @@
   require 'inc/functions.php';
   logged_only();
 date_default_timezone_set('Europe/Paris');
-try
-{
-  $bdd = new PDO('mysql:host=localhost;dbname=test2;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+require 'inc/db.php';
 ?>
 <style>
   .page-wrapper

@@ -11,14 +11,15 @@ require 'inc/header.php';
 if(!empty($_POST)){
 
 	$errors = array();
-	require_once 'inc/db.php';
+        require_once 'inc/db.php';
+        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
 
 	if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
 		$errors['username'] = "Votre pseudo n'est pas valide";
 	} else {
 
-		$req = $pdo->prepare('SELECT id FROM users WHERE username =?');
+		$req = $bdd->prepare('SELECT id FROM users WHERE username =?');
 		$req->execute([$_POST['username']]);
 		$user = $req->fetch();
 		if ($user) {
@@ -33,7 +34,7 @@ if(!empty($_POST)){
 		$errors['email'] = "Email invalide";
 	} else {
 
-		$req = $pdo->prepare('SELECT id FROM users WHERE email =?');
+		$req = $bdd->prepare('SELECT id FROM users WHERE email =?');
 		$req->execute([$_POST['email']]);
 		$user = $req->fetch();
 		if ($user) {
@@ -51,16 +52,16 @@ if(!empty($_POST)){
 
 
 		
-			$req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
+			$req = $bdd->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
 			$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    		$token = str_random(60);
-    		$req->execute([$_POST['username'], $password, $_POST['email'], $token]);
-			$user_id = $pdo->lastInsertId();
+                        $token = str_random(60);
+                        $req->execute([$_POST['username'], $password, $_POST['email'], $token]);
+			$user_id = $bdd->lastInsertId();
 			$url = get_url();
-    		 mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://$url/confirm.php?id=$user_id&token=$token");
+                        mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://$url/confirm.php?id=$user_id&token=$token");
 	  	  	$_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
-    		header('Location: login.php');
-    		exit();
+                        header('Location: login.php');
+                        exit();
 		}
 
 

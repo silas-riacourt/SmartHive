@@ -6,16 +6,17 @@
  * 
  */
 if(isset($_GET['id']) && isset($_GET['token'])){
-    require 'inc/db.php';
     require 'inc/functions.php';
-    $req = $pdo->prepare('SELECT * FROM users WHERE id = ? AND reset_token IS NOT NULL AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)');
+    require_once 'inc/db.php';
+    $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    $req = $bdd->prepare('SELECT * FROM users WHERE id = ? AND reset_token IS NOT NULL AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)');
     $req->execute([$_GET['id'], $_GET['token']]);
     $user = $req->fetch();
     if($user){
         if(!empty($_POST)){
             if(!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']){
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $pdo->prepare('UPDATE users SET password = ?, reset_at = NULL, reset_token = NULL')->execute([$password]);
+                $bdd->prepare('UPDATE users SET password = ?, reset_at = NULL, reset_token = NULL')->execute([$password]);
                 session_start();
                 $_SESSION['flash']['success'] = 'Votre mot de passe a bien été modifié';
                 $_SESSION['auth'] = $user;

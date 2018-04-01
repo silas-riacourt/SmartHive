@@ -5,19 +5,10 @@
  * Author : Silas riacourt <silasdu22@gmail.com>
  * 
  */
-  require 'inc/functions.php';
-  logged_only();
+require 'inc/functions.php';
+logged_only();
 date_default_timezone_set('Europe/Paris');
-try
-{
-  $bdd = new PDO('mysql:host=localhost;dbname=ruche;charset=utf8', 'root', '');
-  $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-
-}
+require 'inc/db.php';
 if(isset($_POST['alert_id'])){
     $update = $bdd->prepare('UPDATE alert SET alert_status=1 WHERE alert_id = :id');
     $update->bindValue('id',$_POST['alert_id']);
