@@ -177,10 +177,14 @@ else{
     var data = new google.visualization.DataTable(<?php echo $jsonTable; ?>);
 
     var options = {
+        hAxis: {
+        format: 'HH:mm'
+    },
      legend:{position:'bottom'},
      chartArea:{width:'95%', height:'65%'},
      colors: ['#ebbc14']
     };
+
 
     var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
 

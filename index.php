@@ -108,7 +108,7 @@ $.getJSON(url, function (data) {
           </div>
           <form action="" method="post">
             <div class="alert alert-danger">
-              <i class="glyphicon glyphicon-exclamation-sign"></i><strong> ALERTE:</strong> ' . $alert_text . ' a proximiter de <strong id="dev"></strong> le <strong>' . $alert_date . '</strong> à <strong>' . $alert_heure . ' !</strong>
+              <i class="glyphicon glyphicon-exclamation-sign"></i><strong> ALERTE:</strong> ' . $alert_text . ' a proximité de <strong id="dev"></strong> le <strong>' . $alert_date . '</strong> à <strong>' . $alert_heure . ' !</strong>
               <input type="hidden" name="alert_id" value="' . $alert_id . '"/>
               <button href="gps.php" type="submit" class="btn btn-danger">ok!</button>
             </div>
