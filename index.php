@@ -52,6 +52,7 @@ if(isset($_POST['alert_id'])){
                                     $alert_id = $row["alert_id"];
                                     $alert_lat = $row["alert_latitude"];
                                     $alert_lng = $row["alert_longitude"];
+                                    $alert_pos = $row["alert_pos"];
                                     $count++;
 
                           }
@@ -101,14 +102,14 @@ $.getJSON(url, function (data) {
           </div>
         ';
       }
-      else{
+      else{//<strong id="dev"></strong>
         echo '
           <div class="alert alert-info">
             <i class="glyphicon glyphicon-info-sign"></i><strong> Info:</strong> Vous avez <strong>(' . $count . ')</strong> nouvelle(s) alerte<strong>!</strong>
           </div>
           <form action="" method="post">
             <div class="alert alert-danger">
-              <i class="glyphicon glyphicon-exclamation-sign"></i><strong> ALERTE:</strong> ' . $alert_text . ' a proximité de <strong id="dev"></strong> le <strong>' . $alert_date . '</strong> à <strong>' . $alert_heure . ' !</strong>
+              <i class="glyphicon glyphicon-exclamation-sign"></i><strong> ALERTE:</strong> ' . $alert_text . ' a proximité de <strong>' . $alert_pos . '</strong> le <strong>' . $alert_date . '</strong> à <strong>' . $alert_heure . ' !</strong>
               <input type="hidden" name="alert_id" value="' . $alert_id . '"/>
               <button href="gps.php" type="submit" class="btn btn-danger">ok!</button>
             </div>

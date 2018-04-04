@@ -36,7 +36,7 @@ if (isset($_GET['date']))
   else
   {  
       $date = date("Y-m-d");
-      header('location:http://localhost/SmartHive/stats_humidite.php?date='.$date.''); 
+      header('location:stats_humidite.php?date='.$date.''); 
       $req = $bdd->prepare('SELECT data_humidity, UNIX_TIMESTAMP(CONCAT_WS(" ", data_date, data_heure)) AS datetime FROM humidity WHERE DATE(data_date) = :date ORDER BY data_date DESC, data_heure DESC');
       $req->bindParam(':date', $date);
       $status = "Voici les données du $date";
@@ -90,11 +90,11 @@ if (isset($_GET['date']))
 <?php require 'inc/header.php'; ?>
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" /> 
     <link rel="stylesheet" href="css/ruche.css" type="text/css" /> 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">            
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+    <link href="css/bootstrap-datepicker.css" rel="stylesheet">            
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />  
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>  
+    <script src="js/dataTables.bootstrap.min.js"></script>            
     <script src="bootstrap-datepicker.js"></script> </head>
     <div class="page-wrapper">
     <h2 align="center"><?php echo $status;?></h2>
@@ -151,7 +151,7 @@ else{
 }
 ?>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
   <script type="text/javascript">
    google.charts.load('current', {'packages':['corechart']});
    google.charts.setOnLoadCallback(drawChart);
@@ -188,7 +188,7 @@ else{
  $(document).ready(function() {
     $('#temperature_data').DataTable( {
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+            "url": "js/French.json"
         }
     } );
 } );

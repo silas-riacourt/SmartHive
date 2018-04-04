@@ -49,7 +49,7 @@ require 'inc/db.php';
           zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
-          downloadUrl('http://localhost/SmartHive/inc/convert.php', function(data) {
+          downloadUrl('inc/convert.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
@@ -88,7 +88,7 @@ require 'inc/db.php';
       
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANFCjBuEsUO1o49ZVkXdukdZ2OLUfnajg&callback=initMap">
+    src="js/map.js">
     </script>
   </body>
 </html>
